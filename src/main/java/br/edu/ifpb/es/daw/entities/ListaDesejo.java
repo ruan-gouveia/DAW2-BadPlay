@@ -1,0 +1,46 @@
+package br.edu.ifpb.es.daw.entities;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.util.Objects;
+
+@Entity
+@Table(name = "tb_lista_desejo")
+public class ListaDesejo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_lista")
+    private Long idLista;
+
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "data_criacao")
+    private LocalDate dataCriacao;
+
+    public ListaDesejo() {}
+
+    public Long getIdLista() { return idLista; }
+    public void setIdLista(Long idLista) { this.idLista = idLista; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public LocalDate getDataCriacao() { return dataCriacao; }
+    public void setDataCriacao(LocalDate dataCriacao) { this.dataCriacao = dataCriacao; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ListaDesejo that = (ListaDesejo) o;
+        return Objects.equals(idLista, that.idLista);
+    }
+
+    @Override
+    public int hashCode() { return Objects.hash(idLista); }
+
+    @Override
+    public String toString() { return "ListaDesejo{idLista=" + idLista + ", nome='" + nome + "'}"; }
+}
