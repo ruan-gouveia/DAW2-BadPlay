@@ -3,7 +3,7 @@
 			 xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd">
 
-	<persistence-unit name="daw" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="daw-pu" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!-- TODO: Adicionar as entidades que vocês criaram -->
@@ -17,7 +17,6 @@
 		<class>br.edu.ifpb.es.daw.entities.Plano</class>
 		<class>br.edu.ifpb.es.daw.entities.Serie</class>
 		<class>br.edu.ifpb.es.daw.entities.Temporada</class>
-		<class>br.edu.ifpb.es.daw.entities.TipoPlano</class>
 		<class>br.edu.ifpb.es.daw.entities.Usuario</class>
 
 		<properties>
@@ -26,9 +25,9 @@
 			<!--
 			 -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw" />
-			<property name="jakarta.persistence.jdbc.user" value="daw" />
-			<property name="jakarta.persistence.jdbc.password" value="daw" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ep-late-poetry-acyplzzc-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require" />
+			<property name="jakarta.persistence.jdbc.user" value="neondb_owner" />
+			<property name="jakarta.persistence.jdbc.password" value="npg_Ht4VrweGpWN8" />
 			<!-- /Database PostgreSQL-->
 
 			<!-- HIBERNATE -->

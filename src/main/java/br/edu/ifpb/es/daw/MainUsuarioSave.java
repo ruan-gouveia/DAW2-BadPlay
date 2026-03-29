@@ -15,11 +15,11 @@ public class MainUsuarioSave {
 
         try {
             Usuario usuario = new Usuario();
-            usuario.setNome("João da Silva");
+            usuario.setNome("Ruan Gouveia");
 
-            usuario.setEmail("joao" + System.nanoTime() + "@badplay.com");
-            usuario.setSenha("senha123");
-            usuario.setDataNascimento(LocalDate.of(1995, 8, 20));
+            usuario.setEmail("ruan" + System.nanoTime() + "@gmail.com");
+            usuario.setSenha("pressao12345");
+            usuario.setDataNascimento(LocalDate.of(2006, 2, 20));
 
             dao.save(usuario);
             System.out.println("Usuário salvo com sucesso: " + usuario);
