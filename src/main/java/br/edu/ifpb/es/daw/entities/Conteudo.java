@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_conteudo")
-public class Conteudo {
+public class Conteudo {      //tlvz representar como classe abstrata dps...
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +18,6 @@ public class Conteudo {
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(name = "tipo")
-    private String tipo;
-
     public Conteudo() {}
 
     public Long getIdConteudo() { return idConteudo; }
@@ -31,9 +28,6 @@ public class Conteudo {
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
-
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
 
     @Override
     public boolean equals(Object o) {
@@ -48,6 +42,6 @@ public class Conteudo {
 
     @Override
     public String toString() {
-        return "Conteudo{idConteudo=" + idConteudo + ", titulo='" + titulo + "'}";
+        return "Conteudo:" + idConteudo + ", titulo:" + titulo + "'}";
     }
 }

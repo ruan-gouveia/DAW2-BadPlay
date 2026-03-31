@@ -13,7 +13,6 @@ public class MainConteudoSave {
             Conteudo c = new Conteudo();
             c.setTitulo("Inception");
             c.setDescricao("Um ladrão que rouba segredos através da tecnologia de compartilhar sonhos.");
-            c.setTipo("Filme");
             dao.save(c);
             System.out.println("Salvo: " + c);
         }

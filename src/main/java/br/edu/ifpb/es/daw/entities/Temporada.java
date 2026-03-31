@@ -12,7 +12,7 @@ public class Temporada {
     @Column(name = "id_temporada")
     private Long idTemporada;
 
-    @Column(name = "numero_temporada")
+    @Column(name = "numero_temporada", nullable = false)
     private Integer numeroTemporada;
 
     public Temporada() {}

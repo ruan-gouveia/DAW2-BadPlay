@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +18,7 @@ public class ListaDesejo {
     private String nome;
 
     @Column(name = "data_criacao")
-    private LocalDate dataCriacao;
+    private LocalDateTime dataCriacao;
 
     public ListaDesejo() {}
 
@@ -27,8 +28,8 @@ public class ListaDesejo {
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 
-    public LocalDate getDataCriacao() { return dataCriacao; }
-    public void setDataCriacao(LocalDate dataCriacao) { this.dataCriacao = dataCriacao; }
+    public LocalDateTime getDataCriacao() { return dataCriacao; }
+    public void setDataCriacao(LocalDateTime dataCriacao) { this.dataCriacao = dataCriacao; }
 
     @Override
     public boolean equals(Object o) {

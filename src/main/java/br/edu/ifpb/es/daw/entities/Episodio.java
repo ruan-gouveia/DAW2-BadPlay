@@ -12,6 +12,9 @@ public class Episodio {
     @Column(name = "id_episodio")
     private Long idEpisodio;
 
+    @Column(name = "nome_episodio")
+    private String nomeEpisodio;
+
     @Column(name = "duracao_minutos")
     private Integer duracao;
 
@@ -34,6 +37,10 @@ public class Episodio {
 
     public String getUrlEpisodio() { return urlEpisodio; }
     public void setUrlEpisodio(String urlEpisodio) { this.urlEpisodio = urlEpisodio; }
+
+    public String getNomeEpisodio() { return nomeEpisodio;}
+
+    public void setNomeEpisodio(String nomeEpisodio) { this.nomeEpisodio = nomeEpisodio;}
 
     @Override
     public boolean equals(Object o) {
