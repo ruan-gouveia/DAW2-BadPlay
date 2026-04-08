@@ -10,7 +10,7 @@ public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_administrador")
-    private Long idAdministrador;
+    private Long id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -23,8 +23,8 @@ public class Administrador {
 
     public Administrador() {}
 
-    public Long getIdAdministrador() { return idAdministrador; }
-    public void setIdAdministrador(Long idAdministrador) { this.idAdministrador = idAdministrador; }
+    public Long getIdAdministrador() { return id; }
+    public void setIdAdministrador(Long idAdministrador) { this.id = idAdministrador; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -40,16 +40,16 @@ public class Administrador {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Administrador that = (Administrador) o;
-        return Objects.equals(idAdministrador, that.idAdministrador);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAdministrador);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Administrador{idAdministrador=" + idAdministrador + ", nome='" + nome + "', email='" + email + "'}";
+        return "Administrador{idAdministrador=" + id + ", nome='" + nome + "', email='" + email + "'}";
     }
 }

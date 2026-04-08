@@ -10,7 +10,7 @@ public class Episodio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_episodio")
-    private Long idEpisodio;
+    private Long id;
 
     @Column(name = "nome_episodio")
     private String nomeEpisodio;
@@ -26,8 +26,8 @@ public class Episodio {
 
     public Episodio() {}
 
-    public Long getIdEpisodio() { return idEpisodio; }
-    public void setIdEpisodio(Long idEpisodio) { this.idEpisodio = idEpisodio; }
+    public Long getIdEpisodio() { return id; }
+    public void setIdEpisodio(Long idEpisodio) { this.id = idEpisodio; }
 
     public Integer getDuracao() { return duracao; }
     public void setDuracao(Integer duracao) { this.duracao = duracao; }
@@ -47,12 +47,12 @@ public class Episodio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Episodio episodio = (Episodio) o;
-        return Objects.equals(idEpisodio, episodio.idEpisodio);
+        return Objects.equals(id, episodio.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idEpisodio); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
-    public String toString() { return "Episodio{idEpisodio=" + idEpisodio + ", numero=" + numeroEpisodio + "}"; }
+    public String toString() { return "Episodio{idEpisodio=" + id + ", numero=" + numeroEpisodio + "}"; }
 }

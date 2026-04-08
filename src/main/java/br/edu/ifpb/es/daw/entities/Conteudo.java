@@ -10,7 +10,7 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conteudo")
-    private Long idConteudo;
+    private Long id;
 
     @Column(name = "titulo", nullable = false)
     private String titulo;
@@ -20,8 +20,8 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
 
     public Conteudo() {}
 
-    public Long getIdConteudo() { return idConteudo; }
-    public void setIdConteudo(Long idConteudo) { this.idConteudo = idConteudo; }
+    public Long getIdConteudo() { return id; }
+    public void setIdConteudo(Long idConteudo) { this.id = idConteudo; }
 
     public String getTitulo() { return titulo; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
@@ -34,14 +34,14 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Conteudo conteudo = (Conteudo) o;
-        return Objects.equals(idConteudo, conteudo.idConteudo);
+        return Objects.equals(id, conteudo.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idConteudo); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
     public String toString() {
-        return "Conteudo:" + idConteudo + ", titulo:" + titulo + "'}";
+        return "Conteudo:" + id + ", titulo:" + titulo + "'}";
     }
 }

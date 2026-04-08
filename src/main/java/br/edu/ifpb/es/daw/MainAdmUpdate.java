@@ -25,7 +25,7 @@ public class MainAdmUpdate {
 
             System.out.println(adm);
 
-            adm.setEmail("Henrqiue@gmail.com");
+            adm.setEmail("Henrqiue" + System.nanoTime() +  "@gmail.com");
 
             dao.update(adm);
 

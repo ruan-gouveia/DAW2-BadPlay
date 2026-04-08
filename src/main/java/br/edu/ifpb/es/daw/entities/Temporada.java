@@ -10,15 +10,15 @@ public class Temporada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_temporada")
-    private Long idTemporada;
+    private Long id;
 
     @Column(name = "numero_temporada", nullable = false)
     private Integer numeroTemporada;
 
     public Temporada() {}
 
-    public Long getIdTemporada() { return idTemporada; }
-    public void setIdTemporada(Long idTemporada) { this.idTemporada = idTemporada; }
+    public Long getIdTemporada() { return id; }
+    public void setIdTemporada(Long idTemporada) { this.id = idTemporada; }
 
     public Integer getNumeroTemporada() { return numeroTemporada; }
     public void setNumeroTemporada(Integer numeroTemporada) { this.numeroTemporada = numeroTemporada; }
@@ -28,12 +28,12 @@ public class Temporada {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Temporada temporada = (Temporada) o;
-        return Objects.equals(idTemporada, temporada.idTemporada);
+        return Objects.equals(id, temporada.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idTemporada); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
-    public String toString() { return "Temporada{idTemporada=" + idTemporada + ", numero=" + numeroTemporada + "}"; }
+    public String toString() { return "Temporada{idTemporada=" + id + ", numero=" + numeroTemporada + "}"; }
 }

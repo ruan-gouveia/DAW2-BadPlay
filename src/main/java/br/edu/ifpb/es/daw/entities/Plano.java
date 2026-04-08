@@ -11,7 +11,7 @@ public class Plano {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_assinatura")
-    private Long idAssinatura;
+    private Long id;
 
     @Column(name = "valor", nullable = false, precision = 10, scale = 2)
     private BigDecimal valor;
@@ -22,8 +22,8 @@ public class Plano {
 
     public Plano() {}
 
-    public Long getIdAssinatura() { return idAssinatura; }
-    public void setIdAssinatura(Long idAssinatura) { this.idAssinatura = idAssinatura; }
+    public Long getIdAssinatura() { return id; }
+    public void setIdAssinatura(Long idAssinatura) { this.id = idAssinatura; }
 
     public BigDecimal getValor() { return valor; }
     public void setValor(BigDecimal valor) { this.valor = valor; }
@@ -36,18 +36,18 @@ public class Plano {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plano plano = (Plano) o;
-        return Objects.equals(idAssinatura, plano.idAssinatura);
+        return Objects.equals(id, plano.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAssinatura);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Plano{" +
-                "idAssinatura=" + idAssinatura +
+                "idAssinatura=" + id +
                 ", valor=" + valor +
                 ", tipo=" + tipo +
                 '}';

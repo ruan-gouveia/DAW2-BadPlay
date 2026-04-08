@@ -1,7 +1,7 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ public class ListaDesejo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_lista")
-    private Long idLista;
+    private Long id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -22,8 +22,8 @@ public class ListaDesejo {
 
     public ListaDesejo() {}
 
-    public Long getIdLista() { return idLista; }
-    public void setIdLista(Long idLista) { this.idLista = idLista; }
+    public Long getIdLista() { return id; }
+    public void setIdLista(Long idLista) { this.id = idLista; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -36,12 +36,12 @@ public class ListaDesejo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ListaDesejo that = (ListaDesejo) o;
-        return Objects.equals(idLista, that.idLista);
+        return Objects.equals(id, that.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idLista); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
-    public String toString() { return "ListaDesejo{idLista=" + idLista + ", nome='" + nome + "'}"; }
+    public String toString() { return "ListaDesejo{idLista=" + id + ", nome='" + nome + "'}"; }
 }

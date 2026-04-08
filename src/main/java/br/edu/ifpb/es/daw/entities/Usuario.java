@@ -11,7 +11,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Long idUsuario;
+    private Long id;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
@@ -27,8 +27,8 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Long getIdUsuario() { return idUsuario; }
-    public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
+    public Long getIdUsuario() { return id; }
+    public void setIdUsuario(Long idUsuario) { this.id = idUsuario; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -47,18 +47,18 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(idUsuario, usuario.idUsuario);
+        return Objects.equals(id, usuario.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUsuario);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "idUsuario=" + idUsuario +
+                "idUsuario=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 '}';

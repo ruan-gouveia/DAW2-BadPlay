@@ -19,7 +19,7 @@ public class MainAdmSave {
 
             Administrador adm = new Administrador();
 
-            adm.setEmail("Arthur@gmail.com");
+            adm.setEmail("Arthur" + System.nanoTime() +"@gmail.com");
             adm.setNome("Arthur");
             adm.setSenha("teste123");
 

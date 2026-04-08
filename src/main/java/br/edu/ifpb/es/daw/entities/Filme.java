@@ -10,7 +10,7 @@ public class Filme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_filme")
-    private Long idFilme;
+    private Long id;
 
     @Column(name = "url_filme")
     private String urlFilme;
@@ -20,8 +20,8 @@ public class Filme {
 
     public Filme() {}
 
-    public Long getIdFilme() { return idFilme; }
-    public void setIdFilme(Long idFilme) { this.idFilme = idFilme; }
+    public Long getIdFilme() { return id; }
+    public void setIdFilme(Long idFilme) { this.id = idFilme; }
 
     public String getUrlFilme() { return urlFilme; }
     public void setUrlFilme(String urlFilme) { this.urlFilme = urlFilme; }
@@ -34,14 +34,14 @@ public class Filme {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Filme filme = (Filme) o;
-        return Objects.equals(idFilme, filme.idFilme);
+        return Objects.equals(id, filme.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idFilme); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
     public String toString() {
-        return "Filme{idFilme=" + idFilme + ", urlFilme='" + urlFilme + "'}";
+        return "Filme{idFilme=" + id + ", urlFilme='" + urlFilme + "'}";
     }
 }

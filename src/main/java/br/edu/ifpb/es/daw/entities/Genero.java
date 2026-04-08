@@ -10,7 +10,7 @@ public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_genero")
-    private Long idGenero;
+    private Long id;
 
     @Column(name = "nome", nullable = false, unique = true)
     private String nome;
@@ -20,8 +20,8 @@ public class Genero {
 
     public Genero() {}
 
-    public Long getIdGenero() { return idGenero; }
-    public void setIdGenero(Long idGenero) { this.idGenero = idGenero; }
+    public Long getIdGenero() { return id; }
+    public void setIdGenero(Long idGenero) { this.id = idGenero; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -34,12 +34,12 @@ public class Genero {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Genero genero = (Genero) o;
-        return Objects.equals(idGenero, genero.idGenero);
+        return Objects.equals(id, genero.id);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(idGenero); }
+    public int hashCode() { return Objects.hash(id); }
 
     @Override
-    public String toString() { return "Genero{idGenero=" + idGenero + ", nome='" + nome + "'}"; }
+    public String toString() { return "Genero{idGenero=" + id + ", nome='" + nome + "'}"; }
 }
