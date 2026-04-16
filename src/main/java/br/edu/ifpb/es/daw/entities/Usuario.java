@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +25,13 @@ public class Usuario {
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Assinatura> assinaturas;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<ListaDesejo> listaDesejos;
+
 
     public Usuario() {}
 

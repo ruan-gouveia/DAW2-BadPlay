@@ -18,6 +18,10 @@
 		<class>br.edu.ifpb.es.daw.entities.Serie</class>
 		<class>br.edu.ifpb.es.daw.entities.Temporada</class>
 		<class>br.edu.ifpb.es.daw.entities.Usuario</class>
+		<class>br.edu.ifpb.es.daw.entities.Assinatura</class>
+		<class>br.edu.ifpb.es.daw.entities.Avaliacao</class>
+		<class>br.edu.ifpb.es.daw.entities.Historico</class>
+		<class>br.edu.ifpb.es.daw.entities.Recomendacao</class>
 
 		<properties>
 
