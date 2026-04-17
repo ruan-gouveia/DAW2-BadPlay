@@ -24,6 +24,10 @@ public class Episodio {
     @Column(name = "url_episodio")
     private String urlEpisodio;
 
+    @ManyToOne
+    @JoinColumn(name = "id_temporada")
+    private Temporada temporada;
+
     public Episodio() {}
 
     public Long getIdEpisodio() { return id; }
@@ -41,6 +45,15 @@ public class Episodio {
     public String getNomeEpisodio() { return nomeEpisodio;}
 
     public void setNomeEpisodio(String nomeEpisodio) { this.nomeEpisodio = nomeEpisodio;}
+
+
+    public Temporada getTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(Temporada temporada) {
+        this.temporada = temporada;
+    }
 
     @Override
     public boolean equals(Object o) {

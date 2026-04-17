@@ -12,7 +12,7 @@ public class MainSerieSave {
             SerieDAO dao = new SerieDAOImpl(emf);
             Serie s = new Serie();
             dao.save(s);
-            System.out.println("Série salva com ID: " + s.getIdSerie());
+            System.out.println("Série salva com ID: " + s.getIdConteudo());
         }
     }
 }

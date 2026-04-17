@@ -31,6 +31,12 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<ListaDesejo> listaDesejos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Avaliacao> avaliacaos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Historico> historicos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Recomendacao> recomendacaos;
 
 
     public Usuario() {}
@@ -49,6 +55,46 @@ public class Usuario {
 
     public LocalDate getDataNascimento() { return dataNascimento; }
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+
+    public List<Assinatura> getAssinaturas() {
+        return assinaturas;
+    }
+
+    public void setAssinaturas(List<Assinatura> assinaturas) {
+        this.assinaturas = assinaturas;
+    }
+
+    public List<ListaDesejo> getListaDesejos() {
+        return listaDesejos;
+    }
+
+    public void setListaDesejos(List<ListaDesejo> listaDesejos) {
+        this.listaDesejos = listaDesejos;
+    }
+
+    public List<Avaliacao> getAvaliacaos() {
+        return avaliacaos;
+    }
+
+    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
+        this.avaliacaos = avaliacaos;
+    }
+
+    public List<Historico> getHistoricos() {
+        return historicos;
+    }
+
+    public void setHistoricos(List<Historico> historicos) {
+        this.historicos = historicos;
+    }
+
+    public List<Recomendacao> getRecomendacaos() {
+        return recomendacaos;
+    }
+
+    public void setRecomendacaos(List<Recomendacao> recomendacaos) {
+        this.recomendacaos = recomendacaos;
+    }
 
     @Override
     public boolean equals(Object o) {

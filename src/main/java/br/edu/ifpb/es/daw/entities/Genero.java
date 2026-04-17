@@ -1,6 +1,8 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +20,10 @@ public class Genero {
     @Column(name = "descricao")
     private String descricao;
 
+    @ManyToMany(mappedBy = "genero")
+    private List<Conteudo> conteudos;
+
+
     public Genero() {}
 
     public Long getIdGenero() { return id; }
@@ -28,6 +34,14 @@ public class Genero {
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public List<Conteudo> getConteudos() {
+        return conteudos;
+    }
+
+    public void setConteudos(List<Conteudo> conteudos) {
+        this.conteudos = conteudos;
+    }
 
     @Override
     public boolean equals(Object o) {

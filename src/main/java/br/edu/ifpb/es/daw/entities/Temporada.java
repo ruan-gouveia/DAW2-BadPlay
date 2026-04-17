@@ -1,6 +1,8 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,12 @@ public class Temporada {
     @Column(name = "numero_temporada", nullable = false)
     private Integer numeroTemporada;
 
+    @ManyToOne
+    @JoinColumn(name = "id_serie")
+    private Serie serie;
+    @OneToMany(mappedBy = "temporada")
+    private List<Episodio> episodios;
+
     public Temporada() {}
 
     public Long getIdTemporada() { return id; }
@@ -22,6 +30,22 @@ public class Temporada {
 
     public Integer getNumeroTemporada() { return numeroTemporada; }
     public void setNumeroTemporada(Integer numeroTemporada) { this.numeroTemporada = numeroTemporada; }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
 
     @Override
     public boolean equals(Object o) {

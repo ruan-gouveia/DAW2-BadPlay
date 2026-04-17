@@ -11,7 +11,7 @@ public class MainFilmeDeleteAll {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
             FilmeDAO dao = new FilmeDAOImpl(emf);
             for (Filme f : dao.getAll()) {
-                dao.delete(f.getIdFilme());
+                dao.delete(f.getIdConteudo());
             }
             System.out.println("Todos os filmes removidos.");
         }

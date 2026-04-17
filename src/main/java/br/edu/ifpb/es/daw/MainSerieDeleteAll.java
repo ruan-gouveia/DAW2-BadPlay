@@ -11,7 +11,7 @@ public class MainSerieDeleteAll {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
             SerieDAO dao = new SerieDAOImpl(emf);
             for (Serie s : dao.getAll()) {
-                dao.delete(s.getIdSerie());
+                dao.delete(s.getIdConteudo());
             }
             System.out.println("Todas as séries removidas.");
         }

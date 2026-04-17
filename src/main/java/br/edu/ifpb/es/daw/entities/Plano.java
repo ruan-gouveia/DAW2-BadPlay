@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,9 @@ public class Plano {
     @Column(name = "tipo_plano", nullable = false)
     private TipoPlano tipo;
 
+    @OneToMany(mappedBy = "plano")
+    private List<Assinatura> assinaturas;
+
     public Plano() {}
 
     public Long getIdAssinatura() { return id; }
@@ -30,6 +34,14 @@ public class Plano {
 
     public TipoPlano getTipo() { return tipo; }
     public void setTipo(TipoPlano tipo) { this.tipo = tipo; }
+
+    public List<Assinatura> getAssinaturas() {
+        return assinaturas;
+    }
+
+    public void setAssinaturas(List<Assinatura> assinaturas) {
+        this.assinaturas = assinaturas;
+    }
 
     @Override
     public boolean equals(Object o) {

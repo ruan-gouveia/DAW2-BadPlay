@@ -1,6 +1,8 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,9 @@ public class Administrador {
     @Column(name = "senha", nullable = false)
     private String senha;
 
+    @OneToMany(mappedBy = "administrador")
+    private List<Conteudo> conteudosGerenciados;
+
     public Administrador() {}
 
     public Long getIdAdministrador() { return id; }
@@ -34,6 +39,14 @@ public class Administrador {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
+
+    public List<Conteudo> getConteudosGerenciados() {
+        return conteudosGerenciados;
+    }
+
+    public void setConteudosGerenciados(List<Conteudo> conteudosGerenciados) {
+        this.conteudosGerenciados = conteudosGerenciados;
+    }
 
     @Override
     public boolean equals(Object o) {
