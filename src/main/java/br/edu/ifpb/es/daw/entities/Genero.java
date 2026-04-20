@@ -21,7 +21,7 @@ public class Genero {
     private String descricao;
 
     @ManyToMany(mappedBy = "genero")
-    private List<Conteudo> conteudos;
+    private List<Conteudo> conteudo;
 
 
     public Genero() {}
@@ -36,11 +36,11 @@ public class Genero {
     public void setDescricao(String descricao) { this.descricao = descricao; }
 
     public List<Conteudo> getConteudos() {
-        return conteudos;
+        return conteudo;
     }
 
     public void setConteudos(List<Conteudo> conteudos) {
-        this.conteudos = conteudos;
+        this.conteudo = conteudos;
     }
 
     @Override

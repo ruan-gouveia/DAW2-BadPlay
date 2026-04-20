@@ -17,7 +17,12 @@ public class MainFilmeSave {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
             FilmeDAO dao = new FilmeDAOImpl(emf);
             AdministradorDAO admDao = new AdministradorDAOImpl(emf);
-            Administrador adm = admDao.getByID(8L);
+
+            Administrador adm = new Administrador();
+            adm.setNome("Ruanzihno");
+            adm.setEmail("RuanDelas"+ System.nanoTime() + "@gmail.com");
+            adm.setSenha("teste");
+            admDao.save(adm);
 
             Filme f = new Filme();
             f.setTitulo("BadBoys Devs");

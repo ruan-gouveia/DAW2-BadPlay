@@ -3,6 +3,7 @@ package br.edu.ifpb.es.daw.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class ListaDesejo {
     @JoinTable(name = "tb_lista_conteudo",
             joinColumns = @JoinColumn(name = "id_lista"),
             inverseJoinColumns = @JoinColumn(name = "id_conteudo"))
-    private List<Conteudo> conteudos;
+    private List<Conteudo> conteudos = new ArrayList<>();
 
     public ListaDesejo() {}
 

@@ -55,4 +55,12 @@ public class Avaliacao {
     public String toString() {
         return "Avaliacao{" + "id=" + id + ", nota=" + nota + "}";
     }
+
+    public void setUsuario(Usuario u) {
+        this.usuario = u;
+    }
+
+    public void setConteudo(Conteudo c) {
+            this.conteudo = c;
+    }
 }

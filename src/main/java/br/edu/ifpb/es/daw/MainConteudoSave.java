@@ -41,7 +41,6 @@ public class MainConteudoSave {
             c.setAdministrador(adm); // ManyToOne
             c.getGeneros().add(g);   // ManyToMany (adicionando na lista)
 
-
             conteudoDAO.save(c);
             System.out.println("Conteúdo genérico salvo com ID: " + c.getIdConteudo());
         }

@@ -3,6 +3,8 @@ package br.edu.ifpb.es.daw.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 // O assiste no esquema relacional
@@ -14,7 +16,7 @@ public class Historico {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
-    private LocalDate hora;
+    private LocalDateTime hora;
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
@@ -42,11 +44,11 @@ public class Historico {
         this.data = data;
     }
 
-    public LocalDate getHora() {
+    public LocalDateTime getHora() {
         return hora;
     }
 
-    public void setHora(LocalDate hora) {
+    public void setHora(LocalDateTime hora) {
         this.hora = hora;
     }
 
