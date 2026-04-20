@@ -17,17 +17,9 @@ public class MainAdmGetById {
 
             AdministradorDAO dao = new AdministradorDAOImpl(emf);
 
-            Administrador adm = new Administrador();
+            dao.delete(6L);
+            System.out.printf("Administrador deletado!");
 
-            adm.setEmail("Arthur" + System.nanoTime() + "@gmail.com");
-            adm.setNome("Arthur");
-            adm.setSenha("teste123");
-
-            dao.save(adm);
-
-            Administrador resultado = dao.getByID(adm.getIdAdministrador());
-
-            System.out.println(resultado);
 
 
 

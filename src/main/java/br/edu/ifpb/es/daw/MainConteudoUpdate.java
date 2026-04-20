@@ -10,7 +10,7 @@ public class MainConteudoUpdate {
     public static void main(String[] args) throws Exception {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
             ConteudoDAO dao = new ConteudoDAOImpl(emf);
-            Conteudo c = dao.getByID(1L);
+            Conteudo c = dao.getByID(9L);
             if (c != null) {
                 c.setTitulo(c.getTitulo() + " (Atualizado)");
                 dao.update(c);

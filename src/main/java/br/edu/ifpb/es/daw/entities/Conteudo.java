@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,11 +28,11 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
     @ManyToOne
     @JoinColumn(name = "id_administrador")
     private Administrador administrador;
-    @ManyToOne
+    @ManyToMany
     @JoinTable(name = "tb_conteudo_genero",
             joinColumns = @JoinColumn(name = "id_conteudo"),
             inverseJoinColumns = @JoinColumn(name = "id_genero"))
-    private List<Genero> generos;
+    private List<Genero> genero = new ArrayList<>();
 
     @ManyToMany(mappedBy = "conteudos")
     private List<ListaDesejo> listaDesejos;
@@ -68,11 +69,11 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
     }
 
     public List<Genero> getGeneros() {
-        return generos;
+        return genero;
     }
 
     public void setGeneros(List<Genero> generos) {
-        this.generos = generos;
+        this.genero = generos;
     }
 
     public List<ListaDesejo> getListaDesejos() {

@@ -10,7 +10,7 @@ public class MainConteudoGetById {
     public static void main(String[] args) throws Exception {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
             ConteudoDAO dao = new ConteudoDAOImpl(emf);
-            System.out.println(dao.getByID(1L));
+            System.out.println(dao.getByID(6L));
         }
     }
 }
