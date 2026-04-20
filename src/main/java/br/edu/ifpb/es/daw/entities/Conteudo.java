@@ -31,7 +31,7 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
     @JoinTable(name = "tb_conteudo_genero",
             joinColumns = @JoinColumn(name = "id_conteudo"),
             inverseJoinColumns = @JoinColumn(name = "id_genero"))
-    private List<Genero> generos;
+    private List<Genero> genero;
 
     @ManyToMany(mappedBy = "conteudos")
     private List<ListaDesejo> listaDesejos;
@@ -68,11 +68,11 @@ public class Conteudo {      //tlvz representar como classe abstrata dps...
     }
 
     public List<Genero> getGeneros() {
-        return generos;
+        return genero;
     }
 
     public void setGeneros(List<Genero> generos) {
-        this.generos = generos;
+        this.genero = generos;
     }
 
     public List<ListaDesejo> getListaDesejos() {

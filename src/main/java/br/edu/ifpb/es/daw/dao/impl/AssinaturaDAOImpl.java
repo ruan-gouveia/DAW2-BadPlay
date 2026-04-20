@@ -1,11 +1,12 @@
 package br.edu.ifpb.es.daw.dao.impl;
 
-import br.edu.ifpb.es.daw.entities.Usuario;
+import br.edu.ifpb.es.daw.dao.AssinaturaDAO;
+import br.edu.ifpb.es.daw.entities.Assinatura;
 import jakarta.persistence.EntityManagerFactory;
 
-public class AssinaturaDAOImpl extends AbstractDAOImpl{
-    public AssinaturaDAOImpl(EntityManagerFactory emf) {
+public class AssinaturaDAOImpl extends AbstractDAOImpl<Assinatura, Long> implements AssinaturaDAO {
 
-        super(Usuario.class, emf);
+    public AssinaturaDAOImpl(EntityManagerFactory emf) {
+        super(Assinatura.class, emf);
     }
 }
