@@ -1,72 +1,41 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Objects;
 
-// O assiste no esquema relacional
 @Entity
 @Table(name = "tb_historico")
 public class Historico {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate data;
-    private LocalDateTime hora;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
     @ManyToOne
     @JoinColumn(name = "id_conteudo")
     private Conteudo conteudo;
 
-    public Historico(){
+    public Historico() {}
 
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public LocalDateTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalDateTime hora) {
-        this.hora = hora;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Conteudo getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(Conteudo conteudo) {
-        this.conteudo = conteudo;
-    }
+    public Conteudo getConteudo() { return conteudo; }
+    public void setConteudo(Conteudo conteudo) { this.conteudo = conteudo; }
 
     @Override
     public boolean equals(Object o) {
@@ -81,6 +50,6 @@ public class Historico {
 
     @Override
     public String toString() {
-        return "Historico{" + "id=" + id + ", data=" + data + ", hora=" + hora + "}";
+        return "Historico{id=" + id + ", timestamp=" + timestamp + "}";
     }
 }

@@ -12,7 +12,7 @@ public class Avaliacao {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (name = "nota")
-    private double nota;
+    private Double nota;
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
@@ -32,11 +32,11 @@ public class Avaliacao {
         this.id = id;
     }
 
-    public double getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 

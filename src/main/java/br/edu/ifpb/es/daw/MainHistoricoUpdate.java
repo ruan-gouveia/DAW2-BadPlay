@@ -5,9 +5,7 @@ import br.edu.ifpb.es.daw.dao.impl.HistoricoDAOImpl;
 import br.edu.ifpb.es.daw.entities.Historico;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class MainHistoricoUpdate {
@@ -17,9 +15,11 @@ public class MainHistoricoUpdate {
 
             Historico h = dao.getByID(1L);
             if (h != null) {
-                System.out.println("Hora antiga: " + h.getHora());
+                // CORREÇÃO: Usando getTimestamp em vez de getHora
+                System.out.println("Timestamp antigo: " + h.getTimestamp());
 
-                h.setHora(LocalDateTime.from(LocalTime.now().truncatedTo(ChronoUnit.SECONDS)));
+                // CORREÇÃO: Usando setTimestamp com LocalDateTime
+                h.setTimestamp(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 
                 dao.update(h);
                 System.out.println("Histórico atualizado com sucesso: " + h);
