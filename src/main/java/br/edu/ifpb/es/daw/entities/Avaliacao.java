@@ -60,6 +60,9 @@ public class Avaliacao {
         this.usuario = u;
     }
 
+    public Conteudo getConteudo(){
+        return conteudo;
+    }
     public void setConteudo(Conteudo c) {
             this.conteudo = c;
     }
