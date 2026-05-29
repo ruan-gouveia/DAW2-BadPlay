@@ -5,78 +5,103 @@ import br.edu.ifpb.es.daw.dao.impl.*;
 import br.edu.ifpb.es.daw.entities.*;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class MainDataGenerator {
-    public static void main(String[] args) throws Exception{
-
-        try  (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
-            UsuarioDAO  usuarioDAO = new UsuarioDAOImpl(emf);
+    public static void main(String[] args) throws Exception {
+        try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw-pu")) {
+            UsuarioDAO usuarioDAO = new UsuarioDAOImpl(emf);
             PlanoDAO planoDAO = new PlanoDAOImpl(emf);
             AssinaturaDAO assinaturaDAO = new AssinaturaDAOImpl(emf);
             FilmeDAO filmeDAO = new FilmeDAOImpl(emf);
             AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAOImpl(emf);
 
-            // 1. Criar Usuário
-            Usuario u = new Usuario();
-            u.setNome("João Consultas");
-            u.setEmail("joao" + System.nanoTime() + "@email.com");
-            u.setSenha("123");
-            usuarioDAO.save(u);
+            System.out.println("Populando o banco de dados com novos registros...");
 
-            // 2. Criar Planos
+            // 1. Criar 3 Usuários
+            Usuario u1 = new Usuario();
+            u1.setNome("João Silva");
+            u1.setEmail("joao" + System.nanoTime() + "@email.com");
+            u1.setSenha("123");
+            usuarioDAO.save(u1);
+
+            Usuario u2 = new Usuario();
+            u2.setNome("Maria Souza");
+            u2.setEmail("maria" + System.nanoTime() + "@email.com");
+            u2.setSenha("123");
+            usuarioDAO.save(u2);
+
+            Usuario u3 = new Usuario();
+            u3.setNome("Carlos Oliveira");
+            u3.setEmail("carlos" + System.nanoTime() + "@email.com");
+            u3.setSenha("123");
+            usuarioDAO.save(u3);
+
+            // 2. Criar 3 Planos
             Plano p1 = new Plano();
             p1.setTipo(TipoPlano.BASICO);
             p1.setValor(new BigDecimal("19.90"));
             planoDAO.save(p1);
 
             Plano p2 = new Plano();
-            p2.setTipo(TipoPlano.PREMIUM);
-            p2.setValor(new BigDecimal("59.90"));
+            p2.setTipo(TipoPlano.PADRAO);
+            p2.setValor(new BigDecimal("39.90"));
             planoDAO.save(p2);
 
-            // 3. Criar Assinatura (para testar JOIN FETCH)
-            Assinatura ass = new Assinatura();
-            ass.setUsuario(u);
-            ass.setPlano(p2);
-            ass.setDataInicio(LocalDate.now());
-            ass.setStatus("ATIVA");
-            assinaturaDAO.save(ass);
+            Plano p3 = new Plano();
+            p3.setTipo(TipoPlano.PREMIUM);
+            p3.setValor(new BigDecimal("59.90"));
+            planoDAO.save(p3);
 
-            // 4. Criar Filmes (para testar duração)
+            // 3. Criar Assinaturas (João é Premium, Maria é Padrão)
+            Assinatura ass1 = new Assinatura();
+            ass1.setUsuario(u1);
+            ass1.setPlano(p3);
+            ass1.setDataInicio(LocalDate.now().minusDays(10));
+            ass1.setStatus("ATIVA");
+            assinaturaDAO.save(ass1);
+
+            Assinatura ass2 = new Assinatura();
+            ass2.setUsuario(u2);
+            ass2.setPlano(p2);
+            ass2.setDataInicio(LocalDate.now());
+            ass2.setStatus("ATIVA");
+            assinaturaDAO.save(ass2);
+
+            // 4. Criar 3 Filmes
             Filme f1 = new Filme();
-            f1.setTitulo("Filme Curto " + System.nanoTime());
+            f1.setTitulo("O Poderoso Chefão " + System.nanoTime());
             f1.setTipo("Filme");
-            f1.setDuracao(90);
-            f1.setUrlFilme("http://url1.com");
+            f1.setDuracao(175);
+            f1.setUrlFilme("http://url1.com/" + System.nanoTime());
             filmeDAO.save(f1);
 
             Filme f2 = new Filme();
-            f2.setTitulo("Filme Longo " + System.nanoTime());
+            f2.setTitulo("Toy Story " + System.nanoTime());
             f2.setTipo("Filme");
-            f2.setDuracao(150);
-            f2.setUrlFilme("http://url2.com");
+            f2.setDuracao(81);
+            f2.setUrlFilme("http://url2.com/" + System.nanoTime());
             filmeDAO.save(f2);
 
-            // 5. Criar Avaliações (para testar média e busca por Entidade)
-            Avaliacao av1 = new Avaliacao();
-            av1.setUsuario(u);
-            av1.setConteudo(f2);
-            av1.setNota(4.0);
-            avaliacaoDAO.save(av1);
+            Filme f3 = new Filme();
+            f3.setTitulo("Vingadores " + System.nanoTime());
+            f3.setTipo("Filme");
+            f3.setDuracao(143);
+            f3.setUrlFilme("http://url3.com/" + System.nanoTime());
+            filmeDAO.save(f3);
 
-            Avaliacao av2 = new Avaliacao();
-            av2.setUsuario(u);
-            av2.setConteudo(f2);
-            av2.setNota(5.0);
-            avaliacaoDAO.save(av2);
+            // 5. Criar 5 Avaliações
+            // Avaliações do Filme 1 (Notas: 5.0, 4.0, 4.5 -> Média = 4.5)
+            Avaliacao av1 = new Avaliacao(); av1.setUsuario(u1); av1.setConteudo(f1); av1.setNota(5.0); avaliacaoDAO.save(av1);
+            Avaliacao av2 = new Avaliacao(); av2.setUsuario(u2); av2.setConteudo(f1); av2.setNota(4.0); avaliacaoDAO.save(av2);
+            Avaliacao av3 = new Avaliacao(); av3.setUsuario(u3); av3.setConteudo(f1); av3.setNota(4.5); avaliacaoDAO.save(av3);
+
+            // Avaliações do Filme 2 e 3
+            Avaliacao av4 = new Avaliacao(); av4.setUsuario(u1); av4.setConteudo(f2); av4.setNota(3.5); avaliacaoDAO.save(av4);
+            Avaliacao av5 = new Avaliacao(); av5.setUsuario(u2); av5.setConteudo(f3); av5.setNota(5.0); avaliacaoDAO.save(av5);
 
             System.out.println("--- DADOS GERADOS COM SUCESSO ---");
-            System.out.println("ID do Usuário gerado: " + u.getIdUsuario());
-            System.out.println("ID do Filme Curto (f1) gerado: " + f1.getIdConteudo());
-            System.out.println("ID do Filme Longo (f2) gerado: " + f2.getIdConteudo());
         }
     }
 }

@@ -28,7 +28,6 @@ public class MainDeleteAll {
 
             System.out.println("Iniciando a limpeza do Banco de Dados...");
 
-            // A ORDEM É FUNDAMENTAL PARA EVITAR ERROS DE FOREIGN KEY
 
             // 1. Nível mais baixo e tabelas de cruzamento associativas
             epDAO.getAll().forEach(e -> { try { epDAO.delete(e.getIdEpisodio()); } catch (Exception ex){} });
