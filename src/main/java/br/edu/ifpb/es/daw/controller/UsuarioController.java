@@ -7,13 +7,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@Tag(name = "Usuários", description = "Endpoints para gerenciamento de usuários do BadPlay")
+@CrossOrigin(origins = "*")
+@Tag(name = "Usuários", description = "Endpoints para gerenciamento de usuários")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -24,33 +26,27 @@ public class UsuarioController {
 
     @GetMapping
     @Operation(summary = "Listar todos os usuários")
-    public List<UsuarioResponseDTO> listarTodos() {
-        return usuarioService.listarTodos();
+    public ResponseEntity<List<UsuarioResponseDTO>> listarTodos() {
+        return ResponseEntity.ok(usuarioService.listarTodos());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Buscar um usuário pelo ID")
-    public UsuarioResponseDTO buscarPorId(@PathVariable Long id) {
-        return usuarioService.buscarPorId(id);
+    public ResponseEntity<UsuarioResponseDTO> buscarPorId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(usuarioService.buscarPorId(id));
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Cadastrar um novo usuário")
-    public UsuarioResponseDTO criar(@Valid @RequestBody UsuarioRequestDTO requestDTO) {
-        return usuarioService.criar(requestDTO);
-    }
-
-    @PutMapping("/{id}")
-    @Operation(summary = "Atualizar um usuário existente")
-    public UsuarioResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody UsuarioRequestDTO requestDTO) {
-        return usuarioService.atualizar(id, requestDTO);
+    @Operation(summary = "Criar um novo usuário")
+    public ResponseEntity<UsuarioResponseDTO> criar(@Valid @RequestBody UsuarioRequestDTO dto) {
+        UsuarioResponseDTO usuarioSalvo = usuarioService.salvar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Deletar um usuário pelo ID")
-    public void deletar(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
         usuarioService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

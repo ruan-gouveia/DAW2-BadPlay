@@ -6,8 +6,10 @@ import br.edu.ifpb.es.daw.entities.Usuario;
 import br.edu.ifpb.es.daw.exception.RecursoNaoEncontradoException;
 import br.edu.ifpb.es.daw.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,47 +22,40 @@ public class UsuarioService {
     }
 
     public List<UsuarioResponseDTO> listarTodos() {
-
         return usuarioRepository.findAll().stream()
-                .map(UsuarioResponseDTO::daEntidade)
+                .map(UsuarioResponseDTO::new)
                 .collect(Collectors.toList());
     }
 
-    public UsuarioResponseDTO criar(UsuarioRequestDTO requestDTO) {
-        Usuario usuario = new Usuario();
-        usuario.setNome(requestDTO.nome());
-        usuario.setEmail(requestDTO.email());
-        usuario.setSenha(requestDTO.senha());
-        usuario.setDataNascimento(requestDTO.dataNascimento());
-        Usuario usuarioSalvo = usuarioRepository.save(usuario);
-
-        return UsuarioResponseDTO.daEntidade(usuarioSalvo);
-    }
-
     public UsuarioResponseDTO buscarPorId(Long id) {
-        Usuario usuario = usuarioRepository.findById(id)
+        return usuarioRepository.findById(id)
+                .map(UsuarioResponseDTO::new)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado com o ID: " + id));
-        return UsuarioResponseDTO.daEntidade(usuario);
     }
 
-    public UsuarioResponseDTO atualizar(Long id, UsuarioRequestDTO requestDTO) {
-        Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado para atualizar."));
+    @Transactional
+    public UsuarioResponseDTO salvar(UsuarioRequestDTO dto) {
+        // Validação de email único
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(dto.email());
+        if (usuarioExistente.isPresent()) {
+            throw new IllegalArgumentException("Já existe um usuário cadastrado com este email!");
+        }
 
-        usuario.setNome(requestDTO.nome());
-        usuario.setEmail(requestDTO.email());
-        usuario.setSenha(requestDTO.senha());
-        usuario.setDataNascimento(requestDTO.dataNascimento());
+        Usuario usuario = new Usuario();
+        usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
+        usuario.setSenha(dto.senha());
+        usuario.setDataNascimento(dto.dataNascimento());
 
-        Usuario usuarioAtualizado = usuarioRepository.save(usuario);
-        return UsuarioResponseDTO.daEntidade(usuarioAtualizado);
+        Usuario usuarioSalvo = usuarioRepository.save(usuario);
+        return new UsuarioResponseDTO(usuarioSalvo);
     }
 
+    @Transactional
     public void deletar(Long id) {
         if (!usuarioRepository.existsById(id)) {
-            throw new RecursoNaoEncontradoException("Usuário não encontrado para deleção.");
+            throw new RecursoNaoEncontradoException("Usuário não encontrado com o ID: " + id);
         }
         usuarioRepository.deleteById(id);
     }
-
 }

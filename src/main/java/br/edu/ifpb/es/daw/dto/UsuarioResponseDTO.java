@@ -9,12 +9,8 @@ public record UsuarioResponseDTO(
         String email,
         LocalDate dataNascimento
 ) {
-    public static UsuarioResponseDTO daEntidade(Usuario usuario) {
-        return new UsuarioResponseDTO(
-                usuario.getIdUsuario(),
-                usuario.getNome(),
-                usuario.getEmail(),
-                usuario.getDataNascimento()
-        );
+
+    public UsuarioResponseDTO(Usuario usuario) {
+        this(usuario.getIdUsuario(), usuario.getNome(), usuario.getEmail(), usuario.getDataNascimento());
     }
 }

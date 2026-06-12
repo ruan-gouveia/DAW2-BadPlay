@@ -28,8 +28,8 @@ public class Avaliacao {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     public Double getNota() {
@@ -63,6 +63,7 @@ public class Avaliacao {
     public Conteudo getConteudo(){
         return conteudo;
     }
+
     public void setConteudo(Conteudo c) {
             this.conteudo = c;
     }
