@@ -8,11 +8,12 @@ import br.edu.ifpb.es.daw.entities.Genero;
 import br.edu.ifpb.es.daw.exception.RecursoNaoEncontradoException;
 import br.edu.ifpb.es.daw.repository.AdministradorRepository;
 import br.edu.ifpb.es.daw.repository.FilmeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FilmeService {
@@ -27,10 +28,9 @@ public class FilmeService {
         this.generoService = generoService;
     }
 
-    public List<FilmeResponseDTO> listarTodos() {
-        return filmeRepository.findAll().stream()
-                .map(FilmeResponseDTO::new)
-                .collect(Collectors.toList());
+    public Page<FilmeResponseDTO> listarTodos(Pageable pageable) {
+        return filmeRepository.findAll(pageable)
+                .map(FilmeResponseDTO::new);
     }
 
     public FilmeResponseDTO buscarPorId(Long id) {

@@ -6,11 +6,11 @@ import br.edu.ifpb.es.daw.service.SerieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/series")
@@ -25,9 +25,9 @@ public class SerieController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar todas as séries")
-    public ResponseEntity<List<SerieResponseDTO>> listarTodos() {
-        return ResponseEntity.ok(serieService.listarTodos());
+    @Operation(summary = "Listar todas as séries com paginação")
+    public ResponseEntity<Page<SerieResponseDTO>> listarTodos(Pageable pageable) {
+        return ResponseEntity.ok(serieService.listarTodos(pageable));
     }
 
     @GetMapping("/{id}")

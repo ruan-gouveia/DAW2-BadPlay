@@ -6,11 +6,11 @@ import br.edu.ifpb.es.daw.service.FilmeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/filmes")
@@ -25,9 +25,9 @@ public class FilmeController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar todos os filmes")
-    public ResponseEntity<List<FilmeResponseDTO>> listarTodos() {
-        return ResponseEntity.ok(filmeService.listarTodos());
+    @Operation(summary = "Listar todos os filmes com paginação")
+    public ResponseEntity<Page<FilmeResponseDTO>> listarTodos(Pageable pageable) {
+        return ResponseEntity.ok(filmeService.listarTodos(pageable));
     }
 
     @GetMapping("/{id}")
