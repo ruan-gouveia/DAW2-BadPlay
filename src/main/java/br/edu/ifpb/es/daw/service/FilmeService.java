@@ -40,6 +40,23 @@ public class FilmeService {
     }
 
     @Transactional
+    public FilmeResponseDTO atualizar(Long id, FilmeRequestDTO dto) {
+        Filme filme = filmeRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Filme não encontrado"));
+
+        filme.setTitulo(dto.titulo());
+        filme.setDescricao(dto.descricao());
+        filme.setUrlFilme(dto.urlFilme());
+        filme.setDuracao(dto.duracaoMinutos());
+
+        if (dto.generosIds() != null && !dto.generosIds().isEmpty()) {
+            filme.setGeneros(generoService.buscarEntidadesPorIds(dto.generosIds()));
+        }
+
+        return new FilmeResponseDTO(filmeRepository.save(filme));
+    }
+
+    @Transactional
     public FilmeResponseDTO salvar(FilmeRequestDTO dto) {
 
         Administrador adm = administradorRepository.findById(dto.idAdministrador())

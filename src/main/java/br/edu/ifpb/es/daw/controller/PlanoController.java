@@ -36,4 +36,10 @@ public class PlanoController {
 	        return ResponseEntity.status(HttpStatus.CREATED).body(planoService.salvar(dto));
 	    }
 
+		@PutMapping("/{id}")
+		@Operation(summary = "Atualizar um plano existente")
+		public ResponseEntity<PlanoResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody PlanoRequestDTO dto) {
+			return ResponseEntity.ok(planoService.atualizar(id, dto));
+		}
+
 }

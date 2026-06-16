@@ -66,4 +66,19 @@ public class SerieService {
         }
         serieRepository.deleteById(id);
     }
+
+    @Transactional
+    public SerieResponseDTO atualizar(Long id, SerieRequestDTO dto) {
+        Serie serie = serieRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Série não encontrada"));
+
+        serie.setTitulo(dto.titulo());
+        serie.setDescricao(dto.descricao());
+
+        if (dto.generosIds() != null && !dto.generosIds().isEmpty()) {
+            serie.setGeneros(generoService.buscarEntidadesPorIds(dto.generosIds()));
+        }
+
+        return new SerieResponseDTO(serieRepository.save(serie));
+    }
 }

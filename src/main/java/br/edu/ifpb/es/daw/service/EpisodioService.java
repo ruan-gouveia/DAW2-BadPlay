@@ -59,4 +59,22 @@ public class EpisodioService {
         }
         episodioRepository.deleteById(id);
     }
+
+    @Transactional
+    public EpisodioResponseDTO atualizar(Long id, EpisodioRequestDTO dto) {
+        Episodio ep = episodioRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Episódio não encontrado"));
+
+        Temporada temporada = temporadaRepository.findById(dto.idTemporada())
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Temporada não encontrada"));
+
+        ep.setNomeEpisodio(dto.nomeEpisodio());
+        ep.setNumeroEpisodio(dto.numeroEpisodio());
+        ep.setDuracao(dto.duracaoMinutos());
+        ep.setUrlEpisodio(dto.urlEpisodio());
+        ep.setTemporada(temporada);
+
+        return new EpisodioResponseDTO(episodioRepository.save(ep));
+    }
+
 }

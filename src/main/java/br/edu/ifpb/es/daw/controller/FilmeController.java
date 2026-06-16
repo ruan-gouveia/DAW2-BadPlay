@@ -48,4 +48,11 @@ public class FilmeController {
         filmeService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar um filme existente")
+    public ResponseEntity<FilmeResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody FilmeRequestDTO dto) {
+        return ResponseEntity.ok(filmeService.atualizar(id, dto));
+    }
+
 }

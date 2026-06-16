@@ -56,4 +56,19 @@ public class TemporadaService {
         }
         temporadaRepository.deleteById(id);
     }
+
+    @Transactional
+    public TemporadaResponseDTO atualizar(Long id, TemporadaRequestDTO dto) {
+        Temporada temporada = temporadaRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Temporada não encontrada"));
+
+        Serie serie = serieRepository.findById(dto.idSerie())
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Série não encontrada"));
+
+        temporada.setNumeroTemporada(dto.numeroTemporada());
+        temporada.setSerie(serie);
+
+        return new TemporadaResponseDTO(temporadaRepository.save(temporada));
+    }
+
 }

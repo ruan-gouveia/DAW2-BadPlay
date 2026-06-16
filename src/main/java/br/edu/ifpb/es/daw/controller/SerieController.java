@@ -48,4 +48,10 @@ public class SerieController {
         serieService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar uma série existente")
+    public ResponseEntity<SerieResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody SerieRequestDTO dto) {
+        return ResponseEntity.ok(serieService.atualizar(id, dto));
+    }
 }

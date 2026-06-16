@@ -35,4 +35,11 @@ public class GeneroController {
     public ResponseEntity<GeneroResponseDTO> criar(@Valid @RequestBody GeneroRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(generoService.salvar(dto));
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar um gênero existente")
+    public ResponseEntity<GeneroResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody GeneroRequestDTO dto) {
+        return ResponseEntity.ok(generoService.atualizar(id, dto));
+    }
+
 }

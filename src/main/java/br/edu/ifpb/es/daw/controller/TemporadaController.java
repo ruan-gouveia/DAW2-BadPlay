@@ -48,4 +48,11 @@ public class TemporadaController {
         temporadaService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar uma temporada existente")
+    public ResponseEntity<TemporadaResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody TemporadaRequestDTO dto) {
+        return ResponseEntity.ok(temporadaService.atualizar(id, dto));
+    }
+
 }

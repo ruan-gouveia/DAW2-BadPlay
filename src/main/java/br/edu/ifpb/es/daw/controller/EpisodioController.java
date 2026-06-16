@@ -42,4 +42,11 @@ public class EpisodioController {
         episodioService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar um episódio existente")
+    public ResponseEntity<EpisodioResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody EpisodioRequestDTO dto) {
+        return ResponseEntity.ok(episodioService.atualizar(id, dto));
+    }
+
 }

@@ -35,4 +35,11 @@ public class AdministradorController {
     public ResponseEntity<AdministradorResponseDTO> criar(@Valid @RequestBody AdministradorRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(administradorService.salvar(dto));
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar um administrador existente")
+    public ResponseEntity<AdministradorResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody AdministradorRequestDTO dto) {
+        return ResponseEntity.ok(administradorService.atualizar(id, dto));
+    }
+
 }

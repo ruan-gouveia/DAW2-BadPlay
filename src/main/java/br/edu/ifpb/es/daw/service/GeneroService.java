@@ -3,6 +3,7 @@ package br.edu.ifpb.es.daw.service;
 import br.edu.ifpb.es.daw.dto.GeneroRequestDTO;
 import br.edu.ifpb.es.daw.dto.GeneroResponseDTO;
 import br.edu.ifpb.es.daw.entities.Genero;
+import br.edu.ifpb.es.daw.exception.RecursoNaoEncontradoException;
 import br.edu.ifpb.es.daw.repository.GeneroRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,4 +45,16 @@ public class GeneroService {
     public List<Genero> buscarEntidadesPorIds(List<Long> ids) {
         return generoRepository.findAllById(ids);
     }
+
+    @Transactional
+    public GeneroResponseDTO atualizar(Long id, GeneroRequestDTO dto) {
+        Genero genero = generoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Gênero não encontrado"));
+
+        genero.setNome(dto.nome());
+        genero.setDescricao(dto.descricao());
+
+        return new GeneroResponseDTO(generoRepository.save(genero));
+    }
+
 }
